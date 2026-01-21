@@ -1,5 +1,5 @@
 import express from 'express';
-
+import  validateUser from '../middlewares/inputValidator.js';
 const router = express.Router();
 
 import {
@@ -10,12 +10,10 @@ import {
     deleteUser
 } from '../controllers/userController.js';
 
-
-
-router.post('/users', createUser);
+router.post('/users' ,validateUser, createUser);
 router.get('/users', getAllUsers);
 router.get('/users/:id', getUserById);
-router.put('/users/:id', updateUser);
+router.put('/users/:id', validateUser, updateUser);
 router.delete('/users/:id', deleteUser);
 
 export default router;
